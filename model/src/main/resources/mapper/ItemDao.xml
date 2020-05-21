@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auv.kill.model.mapper.ItemDao">
+
+    <resultMap type="com.auv.kill.model.entity.Item" id="ItemMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="purchaseTime" column="purchase_time" jdbcType="OTHER"/>
+        <result property="isActive" column="is_active" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ItemMap">
+        select
+          id, name, code, stock, purchase_time, is_active, create_time, update_time
+        from db_second_kill.item
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ItemMap">
+        select
+          id, name, code, stock, purchase_time, is_active, create_time, update_time
+        from db_second_kill.item
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ItemMap">
+        select
+          id, name, code, stock, purchase_time, is_active, create_time, update_time
+        from db_second_kill.item
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="purchaseTime != null">
+                and purchase_time = #{purchaseTime}
+            </if>
+            <if test="isActive != null">
+                and is_active = #{isActive}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into db_second_kill.item(name, code, stock, purchase_time, is_active, create_time, update_time)
+        values (#{name}, #{code}, #{stock}, #{purchaseTime}, #{isActive}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update db_second_kill.item
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="purchaseTime != null">
+                purchase_time = #{purchaseTime},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from db_second_kill.item where id = #{id}
+    </delete>
+
+</mapper>
