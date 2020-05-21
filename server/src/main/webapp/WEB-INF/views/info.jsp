@@ -71,13 +71,13 @@
 
     function getJsonData() {
         var killId=$("#killId").val();
-        var data = {
+        /*var data = {
             "killId":killId,
             "userId":10
-        };
-        /*var data = {
-            "killId":killId
         };*/
+        var data = {
+            "killId":killId
+        };
         return data;
     }
 </script>

@@ -18,11 +18,10 @@
 package org.apache.zookeeper.recipes.lock;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import org.junit.Test;
 
 /**
  * test for znodenames

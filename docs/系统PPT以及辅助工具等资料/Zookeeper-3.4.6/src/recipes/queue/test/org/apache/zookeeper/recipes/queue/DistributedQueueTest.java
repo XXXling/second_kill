@@ -17,14 +17,14 @@
  */
 package org.apache.zookeeper.recipes.queue;
 
-import java.util.NoSuchElementException;
-
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.test.ClientBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
 
 
 
